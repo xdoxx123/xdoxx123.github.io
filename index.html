@@ -25,6 +25,19 @@
              /* Maintains aspect ratio */
             object-fit: cover
         }
+        .github {
+            display: flex;
+            /* Center horizontally */
+            align-items: center; /* Center vertically */
+             /* Adjust height as needed */
+            /* Just for visualization */
+        }
+
+        .github img {
+            max-width: 100%; /* Ensure the image doesn't exceed container width */
+            max-height: 100%; /* Ensure the image doesn't exceed container height */
+            display: block; /* Remove any default inline spacing */
+        }
    </style>
 </head>
 <body style="background-color: rgb(188, 169, 255);">
@@ -40,6 +53,6 @@
     <h1  class="text-with-box" style="text-align: center; color: rgb(0, 0, 0);">Hi! Here's xdoxx123</h1>
 <h2   style="text-align: center;color: rgb(0, 0, 0);">im just a goofy guy trying to script</h2>
 <h3   style="text-align: center; color: rgb(0, 0, 0);">learning html and js/ts</h3>
-<a style="text-align: center;" href="https://github.com/xdoxx123"> <img src="Images/github-mark.svg", alt="github logo"> </a>
+<a class="github" style="text-align: center;" href="https://github.com/xdoxx123"> <img class="github" src="Images/github-mark.svg", alt="github logo"> </a>
 </body>
 </html>
