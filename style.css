@@ -1,0 +1,42 @@
+
+@import "https://fonts.googleapis.com/css?family=Roboto";
+@import "https://fonts.googleapis.com/css?family=Poppins";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/Iosevka/6.0.0/iosevka/iosevka.min.css";
+
+
+
+.xdoxx123
+{
+    
+    font-family: 'Roboto', monospace;
+    background: linear-gradient(270deg, #612191, #840fdb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    padding-top: 35px;
+    font-size: 30px;
+    position: absolute;
+    padding-left: 145px;
+}
+
+.pron {
+    background: #ffffff;
+    text-align: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    padding-left: 155px;
+    padding-top: 120px;
+    font-family: "poppins", monospace;
+}
+
+
+.p {
+    color: white;
+    text-align: center;
+   
+    position: absolute;
+    padding-left: 155px;
+ 
+}
