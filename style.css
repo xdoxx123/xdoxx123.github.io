@@ -1,42 +1,42 @@
+body {
+    background-color: rgb(25, 64, 56);
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; 
+}
 
-@import "https://fonts.googleapis.com/css?family=Roboto";
-@import "https://fonts.googleapis.com/css?family=Poppins";
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css";
-@import "https://cdnjs.cloudflare.com/ajax/libs/Iosevka/6.0.0/iosevka/iosevka.min.css";
+.main {
+    align-items: center;
+    display: flex;
+}
 
-
-
-.xdoxx123
-{
+.hden1 {
+    height: 100px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: rgb(31, 82, 72);
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    font-family: "Lucida Console", "Courier New", monospace;
     
-    font-family: 'Roboto', monospace;
-    background: linear-gradient(270deg, #612191, #840fdb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-    padding-top: 35px;
-    font-size: 30px;
-    position: absolute;
-    padding-left: 145px;
 }
 
-.pron {
-    background: #ffffff;
-    text-align: center;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.Second {
     position: absolute;
-    padding-left: 155px;
-    padding-top: 120px;
-    font-family: "poppins", monospace;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+    text-align: center;
+    margin-top: 100px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: large;
 }
 
-
-.p {
-    color: white;
-    text-align: center;
-   
+.icons {
     position: absolute;
-    padding-left: 155px;
- 
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+    filter: brightness(9000);
 }
