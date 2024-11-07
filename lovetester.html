@@ -1,0 +1,63 @@
+<html>
+ <head>
+
+
+ </head>
+ <body>
+    <style>
+        body {
+            background-image: url("heart_background.png");
+            background-color: pink;
+            
+        }
+    </style>
+    <h1>Love Tester</h1>
+    <p>Absolutely not rigged :)</p>
+    <p id="love_meter">Love : </p>
+    <form>
+    <input type="text" id="User0">
+    <input type="text" id="User1">
+</form> 
+    <button id="button">Test</button>
+
+
+ </body>
+<script>
+           // Ensure DOM elements are loaded before running the script
+           window.onload = function() {
+            const button = document.getElementById("button");
+            const input1 = document.getElementById("User0");
+            const input2 = document.getElementById("User1");
+            const love_meter = document.getElementById("love_meter");
+
+            // Set up the button click event listener
+            button.addEventListener("click", OnClick);
+
+            function OnClick() {
+                try {
+                    // Check if input elements exist before accessing their values
+                    if (!input1 || !input2 || !love_meter) {
+                        throw new Error("Required elements are missing in the DOM");
+                    }
+
+                    let value1 = input1.value.trim();
+                    let value2 = input2.value.trim();
+                    if(!value1, !value2){
+                        throw new Error("Names are required.")
+                    }
+                    // Check if the specific names match
+                    if (value1.toLowerCase() === "michał" && value2.toLowerCase() === "natalka") {
+                        love_meter.innerHTML = "Love : 99";
+                    } else {
+                        // Generate a random number for other name combinations
+                        let randomNumber = Math.floor(Math.random() * 101);
+                        
+                        love_meter.innerHTML = "Love : " + randomNumber.toString();
+                    }
+                } catch (error) {
+                    love_meter.innerHTML = "Error : " + error.message;
+                }
+            }
+        };
+    </script>
+</html>
