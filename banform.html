@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ban Info Form</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
     <h1>Ban Info Form</h1>
@@ -41,30 +40,23 @@
                     auth: $("#auth").val(),
                     rbx_id: $("#rbx_id").val(),
                     ban_reason: $("#ban_reason").val(),
-                    ban_time: $("#ban_time").val(),
+                    ban_time: parseInt($("#ban_time").val(), 10),  // Ensure it's an integer
                     ban_note: $("#ban_note").val()
                 };
 
                 // Send the data to the server via AJAX
                 $.ajax({
-    url: "http://127.0.0.1:5000/submit",
-    type: "GET",
-    data: {
-        game_id: data["game_id"],
-        auth: data["auth"],
-        rbx_id: data["rbx_id"],
-        ban_reason: data["ban_reason"],
-        ban_time: data["ban_time"],
-        ban_note: data["ban_note"]
-    },
-    success: function(response) {
-        console.log("Success:", response);
-    },
-    error: function(xhr, status, error) {
-        console.error("Error:", error);
-    }
-});
-
+                    url:"https://api.bloxban.com/place/ban_upload",
+                    type: "GET",  // Changed to POST
+                    contentType: "application/json",  // Ensure the server knows you're sending JSON
+                    data: JSON.stringify(data),  // Send the data as JSON
+                    success: function(response) {
+                        console.log("Success:", response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
             });
         });
     </script>
