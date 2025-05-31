@@ -1,42 +1,131 @@
+h1 {
+    font-family: Fredoka,sans-serif;
+    color: aliceblue;
+    font-size: 48px;
+    -webkit-text-stroke: 1px,black;
+     text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+
+p {
+    font-family: Fredoka,sans-serif;
+    color: aliceblue;
+    font-size: 24px;
+    -webkit-text-stroke: 1px,black;
+     text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+
+.undertitle {
+    font-family: Fredoka,sans-serif;
+    color: aliceblue;
+    font-size: 34px;
+    -webkit-text-stroke: 1px,black;
+     text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+
+.github_user {
+    font-family: Fredoka,sans-serif;
+    color: aliceblue;
+    font-size: 34px;
+    -webkit-text-stroke: 1px,black;
+     text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+.discord {
+    width: 100px;  /* Set width to 200 pixels */
+  height: auto; 
+  filter: brightness(0) saturate(100%) invert(100%);
+}
+
 body {
-    background-color: rgb(25, 64, 56);
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center; 
-}
-
-.main {
-    align-items: center;
-    display: flex;
-}
-
-.hden1 {
-    height: 100px;
-    width: 200px;
-    border-radius: 5px;
-    background-color: rgb(31, 82, 72);
     text-align: center;
-    margin: 10px;
-    padding: 20px;
-    font-family: "Lucida Console", "Courier New", monospace;
-    
+    background-color: rgb(77, 21, 129);
 }
 
-.Second {
-    position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%); 
-    text-align: center;
-    margin-top: 100px;
-    font-family: "Lucida Console", "Courier New", monospace;
-    font-size: large;
+
+.switch {
+  position: fixed;    /* Fix it relative to the viewport */
+  top: 10px;          /* 10px from the top */
+  right: 10px;        /* 10px from the right */
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  z-index: 1000;      /* ensure it’s above other elements */
 }
 
-.icons {
-    position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%); 
-    filter: brightness(9000);
+/* rest of your styles stay the same */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+
+
+  /* Rainbow text animation */
+  @keyframes rainbow {
+    0%{color:#ff0000;}
+    14%{color:#ff7f00;}
+    28%{color:#ffff00;}
+    42%{color:#00ff00;}
+    57%{color:#0000ff;}
+    71%{color:#4b0082;}
+    85%{color:#8b00ff;}
+    100%{color:#ff0000;}
+  }
+
+  /* Apply animation to all elements inside body when rainbow-text is active */
+  body.rainbow-text, 
+  body.rainbow-text * {
+    animation: rainbow 3s linear infinite;
+  }
