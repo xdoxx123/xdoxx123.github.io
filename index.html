@@ -17,6 +17,29 @@
     <a href="https://discord.com/users/1344356579230613554">
     <img  href="https://discord.com/users/897772568000471050"  class="discord" src="https://static.vecteezy.com/system/resources/previews/018/930/500/non_2x/discord-logo-discord-icon-transparent-free-png.png">
     </a>
-    <script src="script.js"/>
+    <script>var wow = document.getElementById("title")
+setInterval(function(){
+    const strings = ["Hai!","Hallo!","Hejo!"];
+
+const randomIndex = Math.floor(Math.random() * strings.length);
+const randomString = strings[randomIndex];
+
+wow.textContent = randomString
+},2000)
+
+const switchInput = document.getElementById('mySwitch');
+
+  switchInput.addEventListener('change', () => {
+    if (switchInput.checked) {
+     
+
+      // Add rainbow animation class to body (or all text elements)
+      document.body.classList.add('rainbow-text');
+
+    } else {
+      // Remove rainbow animation class
+      document.body.classList.remove('rainbow-text');
+    }
+  });</script>
     
 </body>
