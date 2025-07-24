@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <style>
+            
+            form {
+                background-color: #00ced1;   /* softer aqua (Dark Turquoise) */
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                max-width: 350px;
+                margin: 20px auto;
+                font-family: Arial, sans-serif;
+            }
+            div {
+                background-color: #00ced1;   /* softer aqua (Dark Turquoise) */
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                max-width: 350px;
+                margin: 20px auto;
+                font-family: Arial, sans-serif;
+            }
+            body {
+                
+
+                
+                background-image: url("back.jpg");
+                background-repeat: no-repeat;
+                
+                background-size:cover;
+                color:  white;
+                text-align: center;
+                
+                
+                
+                
+                
+            }
+            h2 {
+                font-family: 'Press Start 2P';
+            }
+            
+
+            
+        </style>
+        <h2>MOBS</h2>
+        <form id="form">
+        
+        <label for="dropdown">Name</label>
+        <select id="dropdown" name="dropdown">
+            <option selected value="zombie">Zombie</option>
+            <option value="ender_dragon">Ender dragon</option>
+            <option value="wither">Wither</option>
+            
+            <option value="skeleton">Skeleton</option>
+            <option value="creeper">Creeper</option>
+            <option  value="warden">Warden</option>
+            <option value="tnt">Tnt</option>
+            <option value="blaze">Blaze</option>
+            <option value="cow">Cow</option>
+            <option value="iron_golem">Iron golem</option>
+            <option value="enderman">Enderman</option>
+            <option value="ghast">Ghast</option>
+            <option value="tnt_minecart">Tnt minecraft</option>
+        </select>
+        <label class="nf" for="skib">Count</label>
+         <input style="max-width: 50px;" id="skib" value="1" type="number" min="1">
+         <button id="bob">Submit</button>
+        </form>
+        <h2>ITEMS</h2>
+        <form id="form2">
+        
+        <label for="dropdown2">Name</label>
+        <select id="dropdown2" name="dropdown">
+            <option selected value="diamond">Diamond</option>
+            <option value="iron">Iron</option>
+            <option value="enchanted_golden_apple">Enchanted golden apple</option>
+        </select>
+        <label class="nf" for="skib2">Count</label>
+         <input style="max-width: 50px;" id="skib2" value="1" type="number" min="1">
+         <button id="bob2">Submit</button>
+        </form>
+        <div>
+            <button id="x">Drop item</button><br><br> 
+            <button id="y">Damage</button> <input id="z" type="number">
+        </div>
+
+
+
+
+
+        <script>
+            const ws = new WebSocket("ws://tips-bracelets.gl.at.ply.gg:24260");
+            const but = document.getElementById("form")
+            const skibidi = document.getElementById("dropdown")
+            const skibidi2 = document.getElementById("skib")
+            const skibdidi3 = document.getElementById("form2")
+            const skibid4 = document.getElementById("dropdown2")
+            const skibidi5 = document.getElementById("skib2")
+            const x = document.getElementById("x")
+            const y = document.getElementById("y")
+            const z = document.getElementById("z")
+     
+
+            ws.addEventListener("message", (event) => {
+                console.log("Message from server ", event.data);
+            });
+         
+            but.addEventListener("submit",(ev) => {
+                ev.preventDefault()
+                var ot = {
+                    type:1,
+                    id:skibidi.value,
+                    count:skibidi2.value
+
+
+                }
+                const w = JSON.stringify(ot)
+                console.log(w)
+                
+                ws.send(w)
+            })
+            skibdidi3.addEventListener("submit",(z) => {
+                z.preventDefault()
+                var ot = {
+                    type:2,
+                    id:skibid4.value,
+                    count:skibidi5.value
+
+
+                }
+                const w = JSON.stringify(ot)
+                console.log(w)
+                
+                ws.send(w)
+            })
+            x.addEventListener("click",(z) => {
+                z.preventDefault
+                var ot = {
+                    type:3,
+                    Thing:1
+
+
+                }
+                const w = JSON.stringify(ot)
+                console.log(w)
+                
+                ws.send(w)
+            })
+
+            y.addEventListener("click",(zx) => {
+                zx.preventDefault()
+                var ot = {
+                    type:3,
+                    Thing:2,
+                    DMG:z.value
+
+
+                }
+                const w = JSON.stringify(ot)
+                console.log(w)
+                
+                ws.send(w)
+            })
+        </script>
+    </body>
+</html>
