@@ -46,11 +46,12 @@
                         throw new Error("Names are required.")
                     }
                     // Check if the specific names match
-                    if (value1.toLowerCase() === "michał" && value2.toLowerCase() === "natalka") {
+                    if (value1.toLowerCase() === "michał" && value2.toLowerCase() === "natalka" ) {
                         love_meter.innerHTML = "Love : 99";
-                    } else {
+                    } else if (value1 == "Rafał" && value2 == "Matma") {
                         // Generate a random number for other name combinations
-                        let randomNumber = Math.floor(Math.random() * 101);
+                     love_meter.innerHTML = "Love : 9999999";
+                    } else {  let randomNumber = Math.floor(Math.random() * 101);
                         
                         love_meter.innerHTML = "Love : " + randomNumber.toString();
                     }
@@ -61,3 +62,4 @@
         };
     </script>
 </html>
+
