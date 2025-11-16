@@ -12,13 +12,14 @@
         }
         body {
             font-family: system-ui, -apple-system, sans-serif;
-            background: #0f172a;
+            background: #4d2a0a;
             color: #e2e8f0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            background-image: url("images/tungtung.png");
         }
         .container {
             width: 100%;
@@ -139,7 +140,7 @@
 <body>
     <div class="container">
         <div class="username-screen" id="usernameScreen">
-            <h1>💬 Tung Chat [not vibe coded trust ]</h1>
+            <h1>💬 Lory is a skid guys <h1>
             <input type="text" id="usernameInput" placeholder="Enter your username" maxlength="20">
             <button onclick="joinChat()">Join Chat</button>
             <div class="error" id="usernameError"></div>
@@ -160,9 +161,26 @@
     </div>
 
     <script>
+            window.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const resp = await fetch("https://tungchat-davh.shuttle.app/messages", {
+            method: "GET"
+        });
+
+        if (resp.status === 404) {
+            document.body.innerHTML = "Sorry guys, tungchat is offline :(";
+        }
+    } catch (err) {
+        // Network error (server down)
+        document.body.innerHTML = "Sorry guys, tungchat is offline :(";
+    }
+});
+
+
         const API_URL = 'https://tungchat-davh.shuttle.app';
         let username = '';
         let lastMessageCount = 0;
+        
 
         function joinChat() {
             const input = document.getElementById('usernameInput');
