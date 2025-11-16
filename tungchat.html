@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+        .username-screen, .chat-screen {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .username-screen {
+            text-align: center;
+        }
+        .username-screen h1 {
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #334155;
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        button {
+            padding: 12px 24px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .username-screen button {
+            margin-top: 15px;
+            width: 100%;
+        }
+        .chat-screen {
+            display: none;
+        }
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #334155;
+        }
+        .chat-header h2 {
+            font-size: 24px;
+        }
+        .username-badge {
+            background: #3b82f6;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .messages {
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #0f172a;
+            border-radius: 8px;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #1e293b;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+        .message-username {
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 5px;
+        }
+        .message-content {
+            color: #cbd5e1;
+        }
+        .message-time {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+        .input-area textarea {
+            flex: 1;
+            resize: none;
+            height: 60px;
+        }
+        .input-area button {
+            align-self: flex-end;
+        }
+        .error {
+            color: #ef4444;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="username-screen" id="usernameScreen">
+            <h1>💬 Tung Chat [not vibe coded trust ]</h1>
+            <input type="text" id="usernameInput" placeholder="Enter your username" maxlength="20">
+            <button onclick="joinChat()">Join Chat</button>
+            <div class="error" id="usernameError"></div>
+        </div>
+
+        <div class="chat-screen" id="chatScreen">
+            <div class="chat-header">
+                <h2>Chat Room</h2>
+                <div class="username-badge" id="usernameBadge"></div>
+            </div>
+            <div class="messages" id="messages"></div>
+            <div class="input-area">
+                <textarea id="messageInput" placeholder="Type your message..."></textarea>
+                <button onclick="sendMessage()">Send</button>
+            </div>
+            <div class="error" id="messageError"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'tungchat-davh.shuttle.app';
+        let username = '';
+        let lastMessageCount = 0;
+
+        function joinChat() {
+            const input = document.getElementById('usernameInput');
+            const error = document.getElementById('usernameError');
+            const name = input.value.trim();
+
+            if (!name) {
+                error.textContent = 'Please enter a username';
+                return;
+            }
+
+            username = name;
+            document.getElementById('usernameScreen').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'block';
+            document.getElementById('usernameBadge').textContent = username;
+
+            loadMessages();
+            setInterval(loadMessages, 2000); // Poll every 2 seconds
+        }
+
+        async function loadMessages() {
+            try {
+                const response = await fetch(`${API_URL}/messages`);
+                const messages = await response.json();
+                
+                if (messages.length !== lastMessageCount) {
+                    displayMessages(messages);
+                    lastMessageCount = messages.length;
+                }
+            } catch (error) {
+                console.error('Failed to load messages:', error);
+            }
+        }
+
+        function displayMessages(messages) {
+            const container = document.getElementById('messages');
+            const wasScrolledToBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 50;
+            
+            container.innerHTML = messages.map(msg => `
+                <div class="message">
+                    <div class="message-username">${escapeHtml(msg.username)}</div>
+                    <div class="message-content">${escapeHtml(msg.content)}</div>
+                    <div class="message-time">${formatTime(msg.timestamp)}</div>
+                </div>
+            `).join('');
+
+            if (wasScrolledToBottom) {
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const error = document.getElementById('messageError');
+            const content = input.value.trim();
+
+            if (!content) {
+                error.textContent = 'Please enter a message';
+                return;
+            }
+
+            error.textContent = '';
+
+            try {
+                const response = await fetch(`${API_URL}/send`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, content })
+                });
+
+                if (response.ok) {
+                    input.value = '';
+                    loadMessages();
+                } else {
+                    error.textContent = 'Failed to send message';
+                }
+            } catch (error) {
+                error.textContent = 'Failed to send message';
+                console.error('Error:', error);
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp * 1000);
+            return date.toLocaleTimeString();
+        }
+
+        // Send message on Enter (Shift+Enter for new line)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('messageInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            document.getElementById('usernameInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    joinChat();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
