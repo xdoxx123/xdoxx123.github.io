@@ -185,7 +185,7 @@
 
         async function loadMessages() {
             try {
-                const response = await fetch(`${API_URL}/messages`);
+                const response = await fetch(`tungchat-davh.shuttle.app/messages`);
                 const messages = await response.json();
                 
                 if (messages.length !== lastMessageCount) {
@@ -227,7 +227,7 @@
             error.textContent = '';
 
             try {
-                const response = await fetch(`${API_URL}/send`, {
+                const response = await fetch(`tungchat-davh.shuttle.app/send`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, content })
