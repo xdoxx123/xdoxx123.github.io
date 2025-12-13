@@ -3,81 +3,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>flash emulator</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;     
-            background-color: bisque;
-        }
-        .ctn {
-            width: 65vw;         
-            aspect-ratio: 4 / 3;
-            max-width: 1200px;
-            max-height: 900px;
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid black;
-            margin: 10px;
-        }
-    </style>
+    <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
     <h1>a flash emulator :D</h1>
     <p>.swf file</p>
     <input type="file" id="file">
+    <div class="warn" id="warn"><p>❗<strong>BEWARE</strong> this game uses AS3 which ruffle doesnt fully support</p></div>
     <div id='container' class="ctn">
         <p>game here</p>
     </div>
     <h3>template games</h3>
     <button id="PC">Papas cheeseria</button>
     <button id="JS">Jacksmith</button>
-    <script>
-        function Run(blobURL) {
-            window.RufflePlayer = window.RufflePlayer || {};
-            window.RufflePlayer.config = {"openUrlMode": "confirm"};
-             
-            const ruffle = window.RufflePlayer.newest();
-            const player = ruffle.createPlayer();
-            const container = document.getElementById("container");
-            container.innerHTML = "";
-
-            player.style.width = "100%";
-            player.style.height = "100%";
-            container.appendChild(player);
-            player.addEventListener('loadedmetadata', () => {
-          player.setAttribute("width", player.ruffle().metadata.width);
-          player.setAttribute("height", player.ruffle().metadata.height);
-        })
-            player.ruffle().load(blobURL).then((w) => {
-                console.info("Loaded!")
-                
-                
-            }).catch((e) => {
-                console.error(`Ruffle failed to load the file: ${e}`);
-            })
-            ;
-            
-        }
-
-        document.getElementById("file").addEventListener("change", async (e) => {
-            const file = e.target.files[0];
-            if(!file) return;
-            
-            const blobURL = URL.createObjectURL(file);
-            Run(blobURL);
-        });
-        document.getElementById("PC").addEventListener("click",async (e) => {
-            Run("./templatefiles/papascheeseria.swf")
-        });
-        document.getElementById("JS").addEventListener("click",async (e) => {
-            Run("./templatefiles/js.swf")
-        })
-    </script>
+    <script src="/script.js"></script>
+     
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 </body>
