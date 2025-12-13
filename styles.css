@@ -1,131 +1,44 @@
-h1 {
-    font-family: Fredoka,sans-serif;
-    color: aliceblue;
-    font-size: 48px;
-    -webkit-text-stroke: 1px,black;
-     text-shadow:
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black,
-    1px 1px 0 black;
-}
 
 
-p {
-    font-family: Fredoka,sans-serif;
-    color: aliceblue;
-    font-size: 24px;
-    -webkit-text-stroke: 1px,black;
-     text-shadow:
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black,
-    1px 1px 0 black;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-.undertitle {
-    font-family: Fredoka,sans-serif;
-    color: aliceblue;
-    font-size: 34px;
-    -webkit-text-stroke: 1px,black;
-     text-shadow:
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black,
-    1px 1px 0 black;
-}
-
-
-.github_user {
-    font-family: Fredoka,sans-serif;
-    color: aliceblue;
-    font-size: 34px;
-    -webkit-text-stroke: 1px,black;
-     text-shadow:
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black,
-    1px 1px 0 black;
-}
-
-.discord {
-    width: 100px;  /* Set width to 200 pixels */
-  height: auto; 
-  filter: brightness(0) saturate(100%) invert(100%);
-}
 
 body {
-    text-align: center;
-    background-color: rgb(77, 21, 129);
+    display: flex;
+    
+    background-color: rgb(68, 151, 184);
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
 }
 
 
-.switch {
-  position: fixed;    /* Fix it relative to the viewport */
-  top: 10px;          /* 10px from the top */
-  right: 10px;        /* 10px from the right */
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-  z-index: 1000;      /* ensure it’s above other elements */
+.container {
+  background-color: rgb(213, 249, 255);
+  margin: 50px;
+  border: 2px solid black;
+  width: 50vh;
+  padding: 15px;
 }
 
-/* rest of your styles stay the same */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.container h1 {
+  text-align: center;
 }
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  background-color: #ccc;
-  border-radius: 24px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
+.rb {
+  animation-name: rainbow;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  
 }
 
 
-
-  /* Rainbow text animation */
-  @keyframes rainbow {
-    0%{color:#ff0000;}
-    14%{color:#ff7f00;}
-    28%{color:#ffff00;}
-    42%{color:#00ff00;}
-    57%{color:#0000ff;}
-    71%{color:#4b0082;}
-    85%{color:#8b00ff;}
-    100%{color:#ff0000;}
-  }
-
-  /* Apply animation to all elements inside body when rainbow-text is active */
-  body.rainbow-text, 
-  body.rainbow-text * {
-    animation: rainbow 3s linear infinite;
-  }
+@keyframes rainbow {
+  0% {color: red;}
+  16% {color: orange;}
+  33% {color: yellow;}
+  50% {color: green;}
+  66% {color: blue;}
+  83% {color: purple;}
+  100% {color: red;}
+}
