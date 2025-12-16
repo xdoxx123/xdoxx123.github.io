@@ -43,3 +43,9 @@
   document.getElementById("JS").addEventListener("click", async (e) => {
       Run("./templatefiles/js.swf")
   })
+  document.getElementById("PP").addEventListener("click", async (e) => {
+      Run("./templatefiles/papaspastaria.swf")
+  });
+  document.getElementById("com").addEventListener("click", async (e) => {
+      Run("./templatefiles/cmcoy.swf")
+  })
