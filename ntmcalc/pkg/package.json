@@ -1,0 +1,15 @@
+{
+  "name": "ntm-calc",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "ntm_calc_bg.wasm",
+    "ntm_calc.js",
+    "ntm_calc.d.ts"
+  ],
+  "main": "ntm_calc.js",
+  "types": "ntm_calc.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
