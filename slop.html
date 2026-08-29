@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Embedded Buildroot Linux Terminal</title>
+    </head>
+    <body>
+        <h3>Live Buildroot Terminal</h3>
+        <p>
+            Wait a few seconds for the boot sequence to finish, then press Enter
+            to get the root prompt!
+        </p>
+
+        <div
+            id="screen_container"
+            style="
+                width: 720px;
+                height: 600px;
+                background: #000;
+                color: #fff;
+                padding: 10px;
+            "
+        >
+            <div
+                style="
+                    white-space: pre;
+                    font-family: monospace;
+                    font-size: 14px;
+                    line-height: 18px;
+                "
+            ></div>
+            <canvas style="display: none"></canvas>
+        </div>
+
+        <script src="https://copy.sh/v86/build/libv86.js"></script>
+        <script>
+            window.onload = function () {
+                var emulator = new V86({
+                    wasm_path: "/v86/v86.wasm",
+                    memory_size: 512 * 1024 * 1024,
+                    vga_memory_size: 8 * 1024 * 1024,
+                    screen_container:
+                        document.getElementById("screen_container"),
+                    bios: {
+                        url: "/v86/seabios.bin",
+                    },
+                    vga_bios: {
+                        url: "/v86/vgabios.bin",
+                    },
+                    bzimage: { url: "/images/vmlinuz-virt" }, // The Kernel engine
+                    initrd: { url: "/images/initramfs-virt" },
+                    autostart: true,
+
+                    cmdline: "init=/bin/sh rw console=tty0 tsc=reliable",
+                });
+            };
+        </script>
+    </body>
+</html>
